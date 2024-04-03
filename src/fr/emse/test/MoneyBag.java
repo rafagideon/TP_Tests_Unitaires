@@ -28,6 +28,7 @@ public class MoneyBag implements IMoney {
 				fMonies.set(i, new Money(fMonies.get(i).amount() +
 							m.amount(),
 							m.currency()));
+				if(fMonies.get(i).amount() == 0) fMonies.remove(i);
 			}
 		}
 	}
@@ -38,7 +39,8 @@ public class MoneyBag implements IMoney {
 	
 	public IMoney addMoney(Money m) {
         appendMoney(m);
-        return this;
+        if(fMonies.size() == 1) return fMonies.get(0);
+        else return this;
     }
 
     public IMoney addMoneyBag(MoneyBag m) {

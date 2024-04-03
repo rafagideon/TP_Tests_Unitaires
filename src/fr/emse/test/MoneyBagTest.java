@@ -63,4 +63,10 @@ public class MoneyBagTest {
 		MoneyBag expected = new MoneyBag(bag);
 		assertEquals(expected, fMB1.add(fMB2));
 	}
+	
+	@Test
+	public void testSimplification() {
+		Money expected = f7USD;
+		assertEquals(expected, fMB1.add(new Money(-12, "CHF")));
+	}
 }
