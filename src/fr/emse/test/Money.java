@@ -20,4 +20,23 @@ public class Money {
 	public Money add(Money m) {
 		return new Money(amount() + m.amount(), currency());
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Money other = (Money) obj;
+		if (fAmount != other.fAmount)
+			return false;
+		if (fCurrency == null) {
+			if (other.fCurrency != null)
+				return false;
+		} else if (!fCurrency.equals(other.fCurrency))
+			return false;
+		return true;
+	}
 }
