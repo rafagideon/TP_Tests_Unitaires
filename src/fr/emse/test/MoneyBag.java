@@ -2,7 +2,7 @@ package fr.emse.test;
 
 import java.util.Vector;
 
-public class MoneyBag {
+public class MoneyBag implements IMoney {
 	private Vector<Money> fMonies = new Vector<Money>();
 	
 	MoneyBag(Money m1, Money m2) {
@@ -30,6 +30,10 @@ public class MoneyBag {
 							m.currency()));
 			}
 		}
+	}
+	
+	public IMoney add(IMoney m) {
+		return m.addMoneyBag(this);
 	}
 
 	@Override
