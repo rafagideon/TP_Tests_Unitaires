@@ -35,6 +35,18 @@ public class MoneyBag implements IMoney {
 	public IMoney add(IMoney m) {
 		return m.addMoneyBag(this);
 	}
+	
+	public IMoney addMoney(Money m) {
+        appendMoney(m);
+        return this;
+    }
+
+    public IMoney addMoneyBag(MoneyBag m) {
+        for(Money money : m.fMonies) {
+        	appendMoney(money);
+        }
+        return this;
+    }
 
 	@Override
 	public boolean equals(Object obj) {
@@ -48,8 +60,19 @@ public class MoneyBag implements IMoney {
 		if (fMonies == null) {
 			if (other.fMonies != null)
 				return false;
-		} else if (!fMonies.equals(other.fMonies))
-			return false;
+		} else {
+			boolean found = true;
+			for(Money m1 : fMonies) {
+				found = false;
+				for(Money m2 : other.fMonies) {
+					if(m1.equals(m2)) {
+						found = true;
+						break;
+					}
+				}
+				if(!found) return false; 
+			}
+		}
 		return true;
 	}
 }

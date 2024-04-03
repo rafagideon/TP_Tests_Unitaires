@@ -21,11 +21,15 @@ public class Money implements IMoney {
 		return m.addMoney(this);
 	}
 	
-	public Money add(Money m) {
+	public IMoney addMoney(Money m) {
 		if (m.currency().equals(currency()))
 			return new Money(amount() + m.amount(), currency());
 		return new MoneyBag(this, m);
-	}
+    }
+
+    public IMoney addMoneyBag(MoneyBag m) {
+        return m.addMoney(this);
+    }
 
 	@Override
 	public boolean equals(Object obj) {
